@@ -83,3 +83,36 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  To test we'll be using Travis CI and for production we will try deploying all this to AWS EBS, which we're told to be automatic. 
  
  
+## Real-time
+ 
+ Beginning the development part of out 3 part project, there are two dockerfiles `Dockerfile.dev` for development and `Dockerfile` for our usual dockerfile.
+ 
+ Also, `node_modules` folder has to be deleted, just to stop Docker container from redoing it since it contains the `RUN npm install` line? And it also cuts our memory  from 198 MB to a puny 1.6 MB. It's a win win.
+ 
+ We are able to see the webpage on localhost:3000, the creation of Create React App. To tweak some changes, we obviosly made some changes in the `apps.js` file. 
+ 
+ #### Here is the problem 
+ To see the changes reflect in the localhost, we either have to rebuilt the image again, which is tiresome, or come up with a better approach.
+ 
+ #### The solution = `Docker Volumes` 
+  We haven't used docker volumes since it's a pain in the ass. !!! For reals. 
+  To cut a potentially very long story short, we're setting up a "mapping" between a folder inside the docker container with a folder outside the docker container. 
+  P.S. - This is all the bhasad.
+  
+  The syntax is : `docker run -p 3000:3000 -v/app/node_modules -v $(pwd):/app <image_id>`  
+  
+  Syntax for WSL2 users : `docker run -it -p 3000:3000 -v /app/node_modules -v ~/frontend:/app <image_id>` or 
+                          
+                          `docker run -it -p 3000:3000 -v /app/node_modules -v /home/USER/frontend:/app <image_id>`
+  
+ ### Bhasad in the frontend
+  
+  When adding volumes and volume bookmarking to the docker run command you see these errors in your terminal:
+
+   "Failed to compile.
+
+   EACCES: permission denied, mkdir '/app/node_modules/.cache'"
+ 
+ 
+ 
+ 
