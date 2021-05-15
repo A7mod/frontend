@@ -1,3 +1,6 @@
+P.S. -Project Description at the end of these "instructions"..
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +71,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Project : frontend
+
+ Moving along in the course, here we come across techniques of 'Creating a Production-Grade Workflow' using Docker. 
+ By far, we've downloaded nodejs and created a react app and generated the application, without using docker.
+ 
+ The whole idea is to create a react frontend and wrap it up inside a docker container and try testing and later deploying it.
+ 
+ To test we'll be using Travis CI and for production we will try deploying all this to AWS EBS, which we're told to be automatic. 
+ 
+ 
