@@ -82,8 +82,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  
  To test we'll be using Travis CI and for production we will try deploying all this to AWS EBS, which we're told to be automatic. 
  
+ This is a `3 part project` where there's a `Development` phase, a `Testing` phase and a `Production` phase. 
+ 
  
 ## Real-time
+
+### Development Phase
  
  Beginning the development part of out 3 part project, there are two dockerfiles `Dockerfile.dev` for development and `Dockerfile` for our usual dockerfile.
  
@@ -102,8 +106,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   The syntax is : `docker run -p 3000:3000 -v/app/node_modules -v $(pwd):/app <image_id>`  
   
   Syntax for WSL2 users : `docker run -it -p 3000:3000 -v /app/node_modules -v ~/frontend:/app <image_id>` or 
-                          
                           `docker run -it -p 3000:3000 -v /app/node_modules -v /home/USER/frontend:/app <image_id>`
+  
+  here the portnumbers are same, but they can be different. No problem there.
   
  ### Bhasad in the frontend
   
@@ -112,6 +117,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    "Failed to compile.
 
    EACCES: permission denied, mkdir '/app/node_modules/.cache'"
+   
+   Well, it was good that we have a well explained solution now : https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#questions/14297316 
+   
+   The changes have been made in the Dockerfile.dev above. The explaination link above will tell the rest. 
+   
+   
  
  
  
