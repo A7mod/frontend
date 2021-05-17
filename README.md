@@ -82,8 +82,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
  
  To test we'll be using Travis CI and for production we will try deploying all this to AWS EBS, which we're told to be automatic. 
  
+ This is a `3 part project` where there's a `Development` phase, a `Testing` phase and a `Production` phase. 
+ 
  
 ## Real-time
+
+### Development Phase
  
  Beginning the development part of out 3 part project, there are two dockerfiles `Dockerfile.dev` for development and `Dockerfile` for our usual dockerfile.
  
@@ -102,8 +106,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   The syntax is : `docker run -p 3000:3000 -v/app/node_modules -v $(pwd):/app <image_id>`  
   
   Syntax for WSL2 users : `docker run -it -p 3000:3000 -v /app/node_modules -v ~/frontend:/app <image_id>` or 
-                          
                           `docker run -it -p 3000:3000 -v /app/node_modules -v /home/USER/frontend:/app <image_id>`
+  
+  here the portnumbers are same, but they can be different. No problem there.
   
  ### Bhasad in the frontend
   
@@ -112,6 +117,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    "Failed to compile.
 
    EACCES: permission denied, mkdir '/app/node_modules/.cache'"
+   
+   Well, it was good that we have a well explained solution now : https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#questions/14297316 
+   
+   The changes have been made in the Dockerfile.dev above. The explaination link above will tell the rest. 
+   And at last, used `docker-compose` to automate this whole rufus. 
+
+### Testing
+   We run tests by building Dockerfile.dev & running `docker run -it <image-id> npm run test`  .
+   This is a one time thing, if we edit `App.test.js` file in our `src`folder, we don't see the changes reflect in the terminal. 
+    
+   So for live updating tests, there are two option, and both are equally not very helpful, but we can't do much about it. 
+   1. Use `docker exec` command: `docker exec -it <image-id> npm run test` which will do the work and is fairly good, but we need to copy the said image-id after running docker       build -f Dockerfile.dev and it's far from automated. We do get a great advantage here i.e., we get a command-line interface to interact with the running tests like -           re-running, p, w, quit etc. 
+   2. Obviously adding an additional service in the `docker-compose` file. This will obviously automate the process from the first step, but there's that drawback of not being able to interact with the interface and rerunning tests. 
+          
+  #### Need for Nginx (for web server)
+  <will explain> 
+  
+  For the nginx server, the main `Dockerfile` which we left in the Development section will be included. 
+  This file will contain two sections:
+      1. One for `Build Phase` &
+       2. One for `Run Phase` 
+  
+  Build Phase includes <will explain> and Run Phase includes <will explain> .
  
  
  
