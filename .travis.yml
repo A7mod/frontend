@@ -7,5 +7,4 @@ before_install:
   - docker build -t a7modkrishna/frontend -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true a7modkrishna/frontend npm run test
-  
+  - docker run a7modkrishna/frontend npm run test -- --coverage
