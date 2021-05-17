@@ -128,8 +128,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    This is a one time thing, if we edit `App.test.js` file in our `src`folder, we don't see the changes reflect in the terminal. 
     
    So for live updating tests, there are two option, and both are equally not very helpful, but we can't do much about it. 
-   1. Use `docker exec` command: `docker exec -it <image-id> npm run test` which will do the work and is fairly good, but we need to copy the said image-id after running docker       build -f Dockerfile.dev and it's far from automated. We do get a great advantage here i.e., we get a command-line interface to interact with the running tests like -           rerunning, p, w, quit etc. 
+   1. Use `docker exec` command: `docker exec -it <image-id> npm run test` which will do the work and is fairly good, but we need to copy the said image-id after running docker       build -f Dockerfile.dev and it's far from automated. We do get a great advantage here i.e., we get a command-line interface to interact with the running tests like -           re-running, p, w, quit etc. 
    2. Obviously adding an additional service in the `docker-compose` file. This will obviously automate the process from the first step, but there's that drawback of not being able to interact with the interface and rerunning tests. 
           
+  #### Need for Nginx (for web server)
+  <will explain> 
   
+  For the nginx server, the main `Dockerfile` which we left in the Development section will be included. 
+  This file will contain two sections:
+      1. One for `Build Phase` &
+       2. One for `Run Phase` 
+   Build Phase includes <will explain> and Run Phase includes <will explain> .
+ 
+ 
+ 
  
