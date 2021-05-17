@@ -138,7 +138,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   This file will contain two sections:
       1. One for `Build Phase` &
        2. One for `Run Phase` 
-   Build Phase includes <will explain> and Run Phase includes <will explain> .
+  
+  Build Phase includes <will explain> and Run Phase includes <will explain> .
  
  
  
