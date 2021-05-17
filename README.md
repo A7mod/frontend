@@ -121,9 +121,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    Well, it was good that we have a well explained solution now : https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#questions/14297316 
    
    The changes have been made in the Dockerfile.dev above. The explaination link above will tell the rest. 
-   
-   
- 
- 
- 
+   And at last, used `docker-compose` to automate this whole rufus. 
+
+### Testing
+   We run tests by building Dockerfile.dev & running `docker run -it <image-id> npm run test`  .
+   This is a one time thing, if we edit `App.test.js` file in our `src`folder, we don't see the changes reflect in the terminal. 
+    
+   So for live updating tests, there are two option, and both are equally not very helpful, but we can't do much about it. 
+   1. Use `docker exec` command: `docker exec -it <image-id> npm run test` which will do the work and is fairly good, but we need to copy the said image-id after running docker       build -f Dockerfile.dev and it's far from automated. We do get a great advantage here i.e., we get a command-line interface to interact with the running tests like -           rerunning, p, w, quit etc. 
+   2. Obviously adding an additional service in the `docker-compose` file. This will obviously automate the process from the first step, but there's that drawback of not being able to interact with the interface and rerunning tests. 
+          
+  
  
