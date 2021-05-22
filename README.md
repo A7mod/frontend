@@ -79,5 +79,36 @@
     3. Start nginx.
  
  
+ ### Using Travis 
+ We have used Travis CI to test our code & then deploy it over AWS. 
+
+ The reason behind using Travis is rather clear. We used to run tests from the terminal using docker run command and that'd take ages. The drawback is that it runs forever, without exiting and it NEVER ENDS. So, Travis will be able to terminate it with 'exit code 0'.
+ 
+ Set up a `.travis.yml` file for all this. The idea is for Travis to push everything, we commit in this repository, to AWS EBS services and run our web service, which is a stock React App. 😅 
+ 
+### Deployment
+ 
+ ### Setting up AWS EBS 
+ AWS EBS or Elastick BeanStalk is the easiest way to run a container. 
+ Make reasonable changes (configuration) to the .travis.yml file for making it deployment ready. 
+ 
+ #### explaination 
+ When Travis decides to deploy our codebase, it's gonna take all our files inside this GITHUB repo and make a ZIP into one 'single' file, and will copy them over to an S3 bucket. After this, it will poke at EBS to communicate the following "Hey, so I uploaded the updated zip file, so just re-deploy it, will ya?" And EBS denies. 
+ LOL, no. It does the work. 
+ 
+ After these steps, we move to something serious, called IAM. (Identity & Access Management) This will need to be explained. 
+ Here, we're suposed to create a new user, and follow along to reach the step of adding existing policies, and select 'one' that suits best for our current scenario, i.e. dealing with EBS and S3. This will take long enough since AWS is so cool to keep changing the interface and content every few months. In the end the user is created. 
+ In addition to this, we have to edit the .travis.yml file after we receive the Access Key and Secret key for the policies created. 
+ 
+ ### Exposing Ports
+ This is a rather new concept for us. It is quite helpful as well.
+ AWS EBS, when it starts up the Docker COntainer, is going to look at this EXPOSE instruction in the dockerfile and the listen port will be mapped directly by it. 
+ 
+ 
+ ## Insights from this project and some FINAL instructions
+ 
+ With Docker we can make small changes to this project (Application) and still be able to deploy it. But with time, the DOckerfile .travis.yml or compose files may need to be changed since there are new updates in the 'create react app' scenario and that kinda makes things difficult for us. We're good for now. 
+ 
+ Last step is to clean up. CLOSE THE EBS SERVICE FROM AWS (user or root) CONSOLE IF YOU DON'T WANT TO BE BILLED. 
  
  
